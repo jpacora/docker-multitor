@@ -1,0 +1,10 @@
+services:
+  multitor:
+    build:
+      context: ./
+    container_name: multitor
+    restart: unless-stopped
+    ports:
+      - "16379:16379"
+    environment:
+      - TOR_INSTANCES=5

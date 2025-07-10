@@ -31,6 +31,7 @@ RUN \
 # install multitor
 RUN	git clone https://github.com/trimstray/multitor && \
 	cd multitor && \
+  chmod +x ./setup.sh && \
 	./setup.sh install && \
 # create log folders
   mkdir -p /var/log/multitor/privoxy/ && \
@@ -40,6 +41,7 @@ RUN	git clone https://github.com/trimstray/multitor && \
 
 COPY startup.sh /multitor/
 RUN chmod +x /multitor/startup.sh
+RUN chmod +x /usr/local/bin/multitor
 
 WORKDIR /multitor/
 EXPOSE	16379
