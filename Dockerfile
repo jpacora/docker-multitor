@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 ENV BUILD_PACKAGES="build-base openssl" \
-    PACKAGES="tor sudo bash git haproxy privoxy npm procps"
+    PACKAGES="curl tor sudo bash git haproxy privoxy npm procps"
 
 # install requirements
 RUN \
@@ -42,6 +42,11 @@ RUN	git clone https://github.com/trimstray/multitor && \
 COPY startup.sh /multitor/
 RUN chmod +x /multitor/startup.sh
 RUN chmod +x /usr/local/bin/multitor
+
+
+RUN cp /etc/privoxy/match-all.action.new /etc/privoxy/match-all.action
+RUN cp /etc/privoxy/default.action.new /etc/privoxy/default.action
+RUN cp /etc/privoxy/user.action.new /etc/privoxy/user.action
 
 WORKDIR /multitor/
 EXPOSE	16379
